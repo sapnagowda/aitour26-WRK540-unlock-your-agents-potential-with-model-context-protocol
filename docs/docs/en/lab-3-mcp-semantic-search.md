@@ -104,9 +104,7 @@ From the previous lab you can ask the agent questions about sales data, but it w
    What 18 amp circuit breakers do we sell?
    ```
 
-   The agent responds with something similar to this message:
-
-   _"I couldn’t find any specific 18 amp circuit breakers in our inventory. However, we may have other types of circuit breakers available. Would you like me to search for general circuit breakers or any other related products? 😊"_
+   The agent cannot find matching products because it's performing text matching. It will respond that no products were found and may suggest trying different search terms.
 
 ## Stop the Agent App
 
