@@ -127,15 +127,14 @@ class ChatManager:
             yield ChatResponse(error="Agent components not properly initialized")
             return
 
-        # Get or create session
-        session_id = request.session_id or "default"
-        try:
-            # Create a span for this chat request
-            message_preview = request.message[:50] + "..." if len(request.message) > 50 else request.message
-            span_name = f"Zava Agent Chat Request: {message_preview}"
+        # Create a span for this chat request
+        message_preview = request.message[:50] + "..." if len(request.message) > 50 else request.message
+        span_name = f"Zava Agent Chat Request: {message_preview}"
 
-            with tracer.start_as_current_span(span_name) as span:
+        with tracer.start_as_current_span(span_name) as span:
+            try:
                 # Get or create thread for this session
+                session_id = request.session_id or "default"
                 session_thread = await self.get_or_create_thread(session_id)
 
                 web_handler = None
@@ -223,65 +222,67 @@ class ChatManager:
                 # Start the stream task
                 stream_task = asyncio.create_task(run_stream())
 
-            # Stream tokens as they arrive
-            tokens_processed = 0
-            try:
-                while True:
-                    try:
-                        # Monitor queue health
-                        queue_size = web_handler.get_queue_size()
-                        if queue_size > 100:  # Warn if queue gets too large
-                            logger.warning("⚠️ Token queue size is large: %d", queue_size)
+                # Stream tokens as they arrive
+                tokens_processed = 0
+                try:
+                    while True:
+                        try:
+                            # Monitor queue health
+                            queue_size = web_handler.get_queue_size()
+                            if queue_size > 100:  # Warn if queue gets too large
+                                logger.warning("⚠️ Token queue size is large: %d", queue_size)
 
-                        # Wait for next token with timeout
-                        item = await asyncio.wait_for(
-                            web_handler.token_queue.get(), timeout=config.response_timeout_seconds
-                        )
-                        if item is None:  # End of stream signal
+                            # Wait for next token with timeout
+                            item = await asyncio.wait_for(
+                                web_handler.token_queue.get(), timeout=config.response_timeout_seconds
+                            )
+                            if item is None:  # End of stream signal
+                                break
+
+                            tokens_processed += 1
+
+                            # Yield response based on type
+                            if isinstance(item, dict):
+                                if item.get("type") == "text":
+                                    yield ChatResponse(content=item["content"])
+                                elif item.get("type") == "file":
+                                    yield ChatResponse(file_info=item["file_info"])
+                                elif item.get("type") == "error":
+                                    yield ChatResponse(error=item["error"])
+                            else:
+                                # Backwards compatibility for plain text
+                                yield ChatResponse(content=str(item))
+
+                        except asyncio.TimeoutError:
+                            yield ChatResponse(
+                                error=f"Response timeout after {config.response_timeout_seconds} seconds"
+                            )
                             break
+                finally:
+                    # Ensure the stream task is properly cleaned up
+                    if stream_task and not stream_task.done():
+                        stream_task.cancel()
+                        with contextlib.suppress(asyncio.CancelledError):
+                            await stream_task
 
-                        tokens_processed += 1
+                    # Clean up any remaining items in the queue to prevent memory leaks
+                    if web_handler:
+                        remaining_items = web_handler.get_queue_size()
+                        if remaining_items > 0:
+                            logger.info("🧹 Cleaning up %d remaining items in token queue", remaining_items)
+                        await web_handler.cleanup()
 
-                        # Yield response based on type
-                        if isinstance(item, dict):
-                            if item.get("type") == "text":
-                                yield ChatResponse(content=item["content"])
-                            elif item.get("type") == "file":
-                                yield ChatResponse(file_info=item["file_info"])
-                            elif item.get("type") == "error":
-                                yield ChatResponse(error=item["error"])
-                        else:
-                            # Backwards compatibility for plain text
-                            yield ChatResponse(content=str(item))
+                # Send completion signal
+                if usage:
+                    yield ChatResponse(
+                        content=f"</br></br>Token usage: Prompt: {usage.prompt_tokens}, Completion: {usage.completion_tokens}, Total: {usage.total_tokens}"
+                    )
+                if incomplete_details:
+                    yield ChatResponse(content=f"</br>{incomplete_details.reason}")
 
-                    except asyncio.TimeoutError:
-                        yield ChatResponse(error=f"Response timeout after {config.response_timeout_seconds} seconds")
-                        break
-            finally:
-                # Ensure the stream task is properly cleaned up
-                if stream_task and not stream_task.done():
-                    stream_task.cancel()
-                    with contextlib.suppress(asyncio.CancelledError):
-                        await stream_task
+                yield ChatResponse(done=True)
+                logger.info("✅ Processed %d tokens successfully", tokens_processed)
 
-                # Clean up any remaining items in the queue to prevent memory leaks
-                if web_handler:
-                    remaining_items = web_handler.get_queue_size()
-                    if remaining_items > 0:
-                        logger.info("🧹 Cleaning up %d remaining items in token queue", remaining_items)
-                    await web_handler.cleanup()
-
-            # Send completion signal
-            if usage:
-                yield ChatResponse(
-                    content=f"</br></br>Token usage: Prompt: {usage.prompt_tokens}, Completion: {usage.completion_tokens}, Total: {usage.total_tokens}"
-                )
-            if incomplete_details:
-                yield ChatResponse(content=f"</br>{incomplete_details.reason}")
-
-            yield ChatResponse(done=True)
-            logger.info("✅ Processed %d tokens successfully", tokens_processed)
-
-        except Exception as e:
-            logger.error("❌ Processing chat message: %s", e)
-            yield ChatResponse(error=f"Streaming error: {e!s}")
+            except Exception as e:
+                logger.error("❌ Processing chat message: %s", e)
+                yield ChatResponse(error=f"Streaming error: {e!s}")
