@@ -25,9 +25,9 @@ Snippets appear in gray boxes. Hover to reveal the copy icon, then click to copy
 
 ### Deeper dive for Developers
 
-Some sections include additional info for developers. Expand these by clicking the blue info icon.
+Some sections include additional info for developers. Expand these by clicking the blue info icon. The examples also assume familiarity with Python, VS Code, and the debugger.
 
-??? info "For Developers"
+??? note "🚀 For Developers"
     These sections provide extra context or technical details useful for developers.
 
 ## Open the Lab Instructions in Your Computer's Browser

@@ -61,8 +61,8 @@ In this lab, you'll enable two powerful tools that work together: the Code Inter
             self.toolset.add(mcp_server_tools)
         ```
 
-        ??? info "For Developers: Human-in-the-Loop Approval Mode"
-            The MCP Server tools are configured with `"never"` for human approval requirements (the default is `"always"`). We use "never" mode in this workshop because we're only performing safe operations like reading sales data. For production applications involving sensitive operations like financial transactions or data modifications, you should use "always" mode to require human authorization. To learn more about implementing **Human-in-the-Loop** approval workflows, see the [Azure AI Agents Human in the Loop sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_mcp.py){:target="_blank"}.
+        ??? note "🚀 For Developers: Human-in-the-Loop Approval Mode"
+            The MCP Server tools are configured with `"never"` for human approval requirements (the default is `"always"`). We use "never" mode in this workshop because we're only performing safe operations like reading sales data. For production applications involving sensitive operations like financial transactions or data modifications, you should use "always" mode to require human authorization. To learn how to implement **Human-in-the-Loop** approval workflows, see the [Azure AI Agents Human in the Loop sample](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_tools/sample_agents_mcp.py){:target="_blank"}.
 
     ## Start the Agent App
 

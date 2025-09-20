@@ -8,7 +8,7 @@ This lab upgrades the Azure AI Agent with semantic search using the MCP Server a
 
 All of Zava's product names and descriptions have been converted to vectors with the OpenAI embedding model (text-embedding-3-small) and stored in the database. This enables the agent to understand user intent and provide more accurate responses.
 
-??? info "For Developers: How does PostgreSQL Semantic Search work?"
+??? note "🚀 For Developers: How does PostgreSQL Semantic Search work?"
 
     ### Vectorizing the Product Descriptions and Names
 
@@ -146,7 +146,7 @@ From VS Code, stop the agent app by pressing <kbd>Shift + F5</kbd>.
             ...
         ```
 
-        ??? info "For Developers: Set a breakpoint in the semantic search method and debug"
+        ??? note "🚀 For Developers: Set a breakpoint in the semantic search method and debug"
             **Prerequisites:** These instructions assume you're familiar with setting breakpoints in VS Code. If you need help with this, see the [VS Code documentation on breakpoints](https://code.visualstudio.com/docs/debugtest/debugging#_breakpoints){:target="_blank"}.
             
             **Purpose:** Setting a breakpoint in the `semantic_search_products` method lets you observe exactly how the semantic search process works, including query processing and database interactions.

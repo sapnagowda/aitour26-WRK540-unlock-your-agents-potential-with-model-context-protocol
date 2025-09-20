@@ -10,7 +10,7 @@ The MCP Server provides the agent with access to the Zava database. When the age
 
 In normal operation, the a store manager would authenticate with the agent and their user role would be set accordingly. But this is a workshop, and we're going to manually select a role.
 
-??? info "For Developers: How does PostgreSQL Row Level Security work?"
+??? note "🚀 For Developers: How does PostgreSQL Row Level Security work?"
 
     ### PostgreSQL RLS Security Overview
 
