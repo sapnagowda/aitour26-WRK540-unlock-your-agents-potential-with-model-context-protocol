@@ -119,13 +119,25 @@ Follow these steps to open the workshop in Visual Studio Code:
 
 === "Python"
 
-    Be sure to familiarize yourself with the key **subfolders** and **files** you’ll be working with throughout the workshop.
+    Familiarize yourself with the key **folders** and **files** in the workspace you’ll be working with throughout the workshop.
 
-    5. The **main.py** file: The entry point for the app, containing its main logic.
-    6. The **sales_data.py** file: The function logic to execute dynamic SQL queries against the SQLite database.
-    7. The **stream_event_handler.py** file: Contains the event handler logic for token streaming.
-    8. The **shared/files** folder: Contains the files created by the agent app.
-    9. The **shared/instructions** folder: Contains the instructions passed to the LLM.
+    ### The "workshop" folder
+
+    - The **app.py** file: The entry point for the app, containing its main logic.
+
+        Note the **INSTRUCTIONS_FILE** variable—it sets which instructions file the agent uses. You will update this variable in a later lab.
+
+    - The **resources.txt** file: Contains the resources used by the agent app.
+    - The **.env** file: Contains the environment variables used by the agent app.
+
+    ### The "mcp_server" folder
+
+    - The **sales_analysis.py** file: The MCP Server with tools for sales analysis.
+
+    ### The "shared/instructions" folder
+
+    - The **instructions** folder: Contains the instructions passed to the LLM.
+
 
     ![Lab folder structure](../../media/project-structure-self-guided-python.png)
 

@@ -206,7 +206,7 @@ There are two VS Code workspaces in the workshop, one for Python and one for C#.
 
     - The **app.py** file: The entry point for the app, containing its main logic.
 
-    Note the **INSTRUCTIONS_FILE** variable—it sets which instructions file the agent uses. You will update this variable in a later lab.
+        Note the **INSTRUCTIONS_FILE** variable—it sets which instructions file the agent uses. You will update this variable in a later lab.
 
     - The **resources.txt** file: Contains the resources used by the agent app.
     - The **.env** file: Contains the environment variables used by the agent app.
