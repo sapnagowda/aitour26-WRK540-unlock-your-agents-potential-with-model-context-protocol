@@ -40,7 +40,7 @@
       "type": "array",
       "defaultValue": [
         {
-          "name": "gpt-4o-mini",
+          "name": "gpt-4o",
           "format": "OpenAI",
           "version": "2024-07-18",
           "skuName": "GlobalStandard",

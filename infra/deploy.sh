@@ -60,7 +60,7 @@ mkdir -p "$(dirname "$ENV_FILE_PATH")"
 {
   echo "PROJECT_ENDPOINT=$PROJECTS_ENDPOINT"
   echo "AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT"
-  echo "GPT_MODEL_DEPLOYMENT_NAME=\"gpt-4o-mini\""
+  echo "GPT_MODEL_DEPLOYMENT_NAME=\"gpt-4o\""
   echo "EMBEDDING_MODEL_DEPLOYMENT_NAME=\"text-embedding-3-small\""
   echo "APPLICATIONINSIGHTS_CONNECTION_STRING=\"$APPLICATIONINSIGHTS_CONNECTION_STRING\""
   echo "AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED=\"true\""
@@ -88,7 +88,7 @@ CSHARP_PROJECT_PATH="../src/csharp/McpAgentWorkshop.AppHost/McpAgentWorkshop.App
 # Set the user secrets for the C# project (if the project exists)
 if [ -f "$CSHARP_PROJECT_PATH" ]; then
   dotnet user-secrets set "Parameters:FoundryEndpoint" "$PROJECTS_ENDPOINT" --project "$CSHARP_PROJECT_PATH"
-  dotnet user-secrets set "Parameters:ChatModelDeploymentName" "gpt-4o-mini" --project "$CSHARP_PROJECT_PATH"
+  dotnet user-secrets set "Parameters:ChatModelDeploymentName" "gpt-4o" --project "$CSHARP_PROJECT_PATH"
   dotnet user-secrets set "Parameters:EmbeddingModelDeploymentName" "text-embedding-3-small" --project "$CSHARP_PROJECT_PATH"
   dotnet user-secrets set "Parameters:AzureOpenAIEndpoint" "$AZURE_OPENAI_ENDPOINT" --project "$CSHARP_PROJECT_PATH"
   dotnet user-secrets set "Parameters:FoundryProjectName" "$AI_PROJECT_NAME" --project "$CSHARP_PROJECT_PATH"

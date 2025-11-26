@@ -13,7 +13,7 @@ The following resources are pre-provisioned in your lab Azure subscription:
 - A resource group named **rg-zava-agent-wks-nnnnnnnn**
 - An **Azure AI Foundry hub** named **fdy-zava-agent-wks-nnnnnnnn**
 - An **Azure AI Foundry project** named **prj-zava-agent-wks-nnnnnnnn**
-- Two models are deployed: **gpt-4o-mini** and **text-embedding-3-small**. [See pricing.](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/){:target="\_blank"}
+- Two models are deployed: **gpt-4o** and **text-embedding-3-small**. [See pricing.](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/){:target="\_blank"}
 - Azure Database for PostgreSQL Flexible Server (B1ms Burstable 32GB) database named **pg-zava-agent-wks-nnnnnnnn**. [See pricing](https://azure.microsoft.com/pricing/details/postgresql/flexible-server){:target="\_blank"}
 - Application Insights resource named **appi-zava-agent-wks-nnnnnnnn**. [See pricing](https://azure.microsoft.com/pricing/calculator/?service=monitor){:target="\_blank"}
 

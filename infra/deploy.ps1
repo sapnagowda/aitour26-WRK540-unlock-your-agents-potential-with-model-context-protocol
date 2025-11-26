@@ -67,7 +67,7 @@ if (Test-Path $ENV_FILE_PATH) { Remove-Item -Path $ENV_FILE_PATH -Force }
 @"
 PROJECT_ENDPOINT=$PROJECTS_ENDPOINT
 AZURE_OPENAI_ENDPOINT=$AZURE_OPENAI_ENDPOINT
-GPT_MODEL_DEPLOYMENT_NAME="gpt-4o-mini"
+GPT_MODEL_DEPLOYMENT_NAME="gpt-4o"
 EMBEDDING_MODEL_DEPLOYMENT_NAME="text-embedding-3-small"
 APPLICATIONINSIGHTS_CONNECTION_STRING="$APPLICATIONINSIGHTS_CONNECTION_STRING"
 AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED="true"
@@ -91,7 +91,7 @@ if (Test-Path $RESOURCES_FILE_PATH) { Remove-Item -Path $RESOURCES_FILE_PATH -Fo
 $CSHARP_PROJECT_PATH = "../src/csharp/McpAgentWorkshop.AppHost/McpAgentWorkshop.AppHost.csproj"
 if (Test-Path $CSHARP_PROJECT_PATH) {
     dotnet user-secrets set "Parameters:FoundryEndpoint" "$PROJECTS_ENDPOINT" --project "$CSHARP_PROJECT_PATH"
-    dotnet user-secrets set "Parameters:ChatModelDeploymentName" "gpt-4o-mini" --project "$CSHARP_PROJECT_PATH"
+    dotnet user-secrets set "Parameters:ChatModelDeploymentName" "gpt-4o" --project "$CSHARP_PROJECT_PATH"
     dotnet user-secrets set "Parameters:EmbeddingModelDeploymentName" "text-embedding-3-small" --project "$CSHARP_PROJECT_PATH"
     dotnet user-secrets set "Parameters:AzureOpenAIEndpoint" "$AZURE_OPENAI_ENDPOINT" --project "$CSHARP_PROJECT_PATH"
     dotnet user-secrets set "Parameters:FoundryProjectName" "$AI_PROJECT_NAME" --project "$CSHARP_PROJECT_PATH"

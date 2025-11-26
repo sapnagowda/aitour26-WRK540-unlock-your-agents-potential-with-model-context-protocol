@@ -77,7 +77,7 @@ $AzurePgHost = "$PostgresServerName.postgres.database.azure.com"
 $AzurePgPort = 5432
 
 # If you keep these static for the workshop:
-$GPT_MODEL_DEPLOYMENT_NAME = "gpt-4o-mini"
+$GPT_MODEL_DEPLOYMENT_NAME = "gpt-4o"
 $EMBEDDING_MODEL_DEPLOYMENT_NAME = "text-embedding-3-small"
 
 # Derive Azure OpenAI endpoint from Projects endpoint

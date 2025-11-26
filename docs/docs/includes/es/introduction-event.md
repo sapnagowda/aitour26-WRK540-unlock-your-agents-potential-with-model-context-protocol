@@ -13,7 +13,7 @@ Los siguientes recursos están pre-provisionados en tu suscripción de Azure del
 - Un grupo de recursos llamado **rg-zava-agent-wks-nnnnnnnn**
 - Un **hub de Azure AI Foundry** llamado **fdy-zava-agent-wks-nnnnnnnn**
 - Un **proyecto de Azure AI Foundry** llamado **prj-zava-agent-wks-nnnnnnnn**
-- Dos modelos están desplegados: **gpt-4o-mini** y **text-embedding-3-small**. [Ver precios.](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/){:target="\_blank"}
+- Dos modelos están desplegados: **gpt-4o** y **text-embedding-3-small**. [Ver precios.](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/){:target="\_blank"}
 - Base de datos de Azure Database for PostgreSQL Flexible Server (B1ms Burstable 32GB) llamada **pg-zava-agent-wks-nnnnnnnn**. [Ver precios](https://azure.microsoft.com/pricing/details/postgresql/flexible-server){:target="\_blank"}
 - Recurso Application Insights llamado **appi-zava-agent-wks-nnnnnnnn**. [Ver precios](https://azure.microsoft.com/pricing/calculator/?service=monitor){:target="\_blank"}
 

@@ -1,6 +1,6 @@
 ## Models required for Zava DIY
 
-- gpt-4o-mini
+- gpt-4o
 - text-embedding-small-3
 
 ## Synthetic Data Generation for Zava DIY

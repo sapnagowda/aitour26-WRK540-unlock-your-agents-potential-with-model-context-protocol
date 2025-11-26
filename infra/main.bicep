@@ -19,7 +19,7 @@ param tags object = {}
 @description('Array of models to deploy')
 param models array = [
   {
-    name: 'gpt-4o-mini'
+    name: 'gpt-4o'
     format: 'OpenAI'
     version: '2024-07-18'
     skuName: 'GlobalStandard'
