@@ -51,8 +51,8 @@ In the workshop environment, the Agent Service runs in Azure but needs to connec
     │   (Azure-hosted)    │                  │  ┌─────────────────┐│
     │                     │                  │  │   MCP Server    ││
     │ ┌─────────────────┐ │                  │  │ (sales_analysis)││
-    │ │ Azure AI        │ │                  │  │ localhost:8000  ││
-    │ │ Agents Service  │ │                  │  └─────────────────┘│
+    │ │  Agent Service  │ │                  │  │ localhost:8000  ││
+    │ │                 │ │                  │  └─────────────────┘│
     │ └─────────────────┘ │                  │           │         │
     └─────────────────────┘                  │           ▼         │
               │                              │  ┌─────────────────┐│

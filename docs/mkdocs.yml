@@ -99,7 +99,7 @@ theme:
   logo: media/favicon.png
   favicon: media/favicon.png
   features:
-    - navigation.instant
+    # - navigation.instant  # Disabled due to incompatibility with i18n language switcher
     - navigation.footer
     - content.code.copy
     - navigation.tabs.sticky
@@ -144,3 +144,7 @@ markdown_extensions:
 
 extra_css:
   - css/custom.css
+
+# Exclude files starting with underscore
+exclude_docs: |
+  **/includes/**/_*

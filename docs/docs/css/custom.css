@@ -23,3 +23,14 @@
     font-weight: 600;
 }
 
+/* Make code text bold and larger for better visibility */
+.md-typeset code {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.md-typeset pre code {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
